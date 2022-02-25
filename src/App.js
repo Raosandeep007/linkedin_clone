@@ -1,58 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import styled from "styled-components";
+import { LeftSideComponents } from "./components/LeftSide/LeftSideComponent";
+import PostComponent from "./components/Post/PostComponent";
+import { RightSide } from "./components/RightSide/RightSide";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Layout>
+        <LeftSideComponents />
+        <PostComponent />
+        <RightSide />
+      </Layout>
     </div>
   );
 }
 
 export default App;
+
+const Layout = styled.div`
+  display: grid;
+  grid-template-areas: "leftside postcomponent rightside";
+  grid-template-columns: minmax(0, 5fr) minmax(0, 12fr) minmax(300px, 7fr);
+  column-gap: 25px;
+  row-gap: 25px;
+  margin: 0px 0;
+  padding: 3% 12%;
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 3%;
+  }
+`;
