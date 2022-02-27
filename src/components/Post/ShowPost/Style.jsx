@@ -22,7 +22,7 @@ export default makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 10,
+    // padding: 10,
     "& > .MuiAvatar-root": {
       cursor: "pointer",
     },
@@ -47,7 +47,7 @@ export default makeStyles((theme) => ({
     "& > h4": {
       fontSize: 15,
       fontWeight: 500,
-      marginBottom: 3,
+      marginBottom: -9,
     },
     "& > p": {
       color: "grey",

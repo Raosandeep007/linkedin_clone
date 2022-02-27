@@ -30,13 +30,14 @@ export default makeStyles((theme) => ({
     },
   },
   stats: {
-    width: "90%",
+    width: "100%",
     "& > *": { marginTop: 5 },
   },
   stat: {
     width: "90%",
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
     color: "grey",
     padding: "5px 10px",
     cursor: "pointer",

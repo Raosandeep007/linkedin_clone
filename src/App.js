@@ -1,33 +1,61 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import { LeftSideComponents } from "./components/LeftSide/LeftSideComponent";
-import PostComponent from "./components/Post/PostComponent";
-import { RightSide } from "./components/RightSide/RightSide";
+import Home from "./components/Home/Home";
+import { Job } from "./components/jobs/Job";
+import { Login } from "./components/Login/Login";
 
+import { Navbar } from "./components/Navbar/Navbar";
+import { Network } from "./components/Network/Network";
+import { Notifications } from "./components/notifications/notifications";
+import {
+  selectUser,
+  loginUser,
+  logoutUser,
+} from "./components/Redux/userSlice";
+import { auth } from "./firebase";
 function App() {
+  const user = useSelector(selectUser);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((userAuth) => {
+      if (userAuth) {
+        //already logged in
+        dispatch(
+          loginUser({
+            email: userAuth.email,
+            uid: userAuth.uid,
+            displayName: userAuth.displayName,
+            photoURL: userAuth.photoURL,
+          })
+        );
+      } else {
+        //not logged in
+        dispatch(logoutUser());
+      }
+    });
+  }, []);
   return (
-    <div className="App">
-      <Layout>
-        <LeftSideComponents />
-        <PostComponent />
-        <RightSide />
-      </Layout>
-    </div>
+    <>
+      {!user ? (
+        <Login />
+      ) : (
+        <div className="App">
+          <Navbar />
+          <br />
+          <Routes>
+            <Route path="/feed" element={<Home />}></Route>
+            <Route path="/jobs" element={<Job />}></Route>
+            <Route path="/notifications" element={<Notifications />}></Route>
+            <Route path="/network" element={<Network />}></Route>
+          </Routes>
+        </div>
+      )}
+    </>
   );
 }
 
 export default App;
-
-const Layout = styled.div`
-  display: grid;
-  grid-template-areas: "leftside postcomponent rightside";
-  grid-template-columns: minmax(0, 5fr) minmax(0, 12fr) minmax(300px, 7fr);
-  column-gap: 25px;
-  row-gap: 25px;
-  margin: 0px 0;
-  padding: 3% 12%;
-  @media (max-width: 1000px) {
-    display: flex;
-    flex-direction: column;
-    padding: 5% 3%;
-  }
-`;

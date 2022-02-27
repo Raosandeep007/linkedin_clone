@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Paper, Avatar, Divider } from "@material-ui/core";
 import LabelImportantIcon from "@material-ui/icons/LabelImportant";
 import Style from "./Style";
-
+import { useSelector } from "react-redux";
+import { selectUser } from "../../Redux/userSlice";
 export const LeftSideTop = () => {
+  const user = useSelector(selectUser);
   const classes = Style();
   const [groups, setGroups] = useState(true);
 
@@ -26,17 +28,17 @@ export const LeftSideTop = () => {
           backgroundRepeat: "no-repeat",
         }}
       ></div>
-      <Avatar src="https://media-exp1.licdn.com/dms/image/C4D03AQHkOOrvaumGKg/profile-displayphoto-shrink_800_800/0/1632887487394?e=1651104000&v=beta&t=bXD1T5wux94Tdi-GrI6Zm7L45JoNTRK5dNpksXpFndo" />
-      <h4>Sandeep Yadav</h4>
+      <Avatar src={user.photoURL} />
+      <h4>{user.displayName}</h4>
       <div className={classes.stats}>
         <Divider />
         <div className={classes.stat}>
           <h4>Who viewed your profile</h4>
-          <p>{viewed}</p>
+          <p style={{ margin: 0 }}>{viewed}</p>
         </div>
         <div className={classes.stat}>
           <h4>Connections</h4>
-          <p>{connections}</p>
+          <p style={{ margin: 0 }}>{connections}</p>
         </div>
         <Divider />
       </div>

@@ -8,8 +8,11 @@ import PhotoSizeSelectActualIcon from "@material-ui/icons/PhotoSizeSelectActual"
 import firebase from "firebase/compat/app";
 import { db } from "../../../firebase";
 import Styles from "./Style";
-
+import { useSelector } from "react-redux";
+import { selectUser } from "../../Redux/userSlice";
 export function AddPost() {
+  const user = useSelector(selectUser);
+
   const classes = Styles();
   const [URL, setURL] = useState("");
   const [enterpost, setEnterpost] = useState("");
@@ -17,10 +20,9 @@ export function AddPost() {
   const submitPost = (e) => {
     e.preventDefault();
     db.collection("enterpost").add({
-      name: "Sandeep Yadav",
+      name: user.displayName,
       message: enterpost,
-      photoUrl:
-        "https://media-exp1.licdn.com/dms/image/C4D03AQHkOOrvaumGKg/profile-displayphoto-shrink_800_800/0/1632887487394?e=1651104000&v=beta&t=bXD1T5wux94Tdi-GrI6Zm7L45JoNTRK5dNpksXpFndo",
+      photoUrl: user.photoURL,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setEnterpost("");
@@ -29,7 +31,7 @@ export function AddPost() {
   return (
     <Paper className={classes.upload}>
       <div className={classes.upload__header}>
-        <Avatar src="https://media-exp1.licdn.com/dms/image/C4D03AQHkOOrvaumGKg/profile-displayphoto-shrink_800_800/0/1632887487394?e=1651104000&v=beta&t=bXD1T5wux94Tdi-GrI6Zm7L45JoNTRK5dNpksXpFndo" />
+        <Avatar src={user.photoURL} />
         <form className={classes.header__form} onSubmit={submitPost}>
           <input
             placeholder="Start a Add"
@@ -38,7 +40,6 @@ export function AddPost() {
           />
           <input id="upload-image" type="file" accept="image/*" hidden />
           <input id="upload-video" type="file" accept="video/*" hidden />
-          {/* <button type="submit">Post</button> */}
         </form>
       </div>
       <div className={classes.upload__media}>
@@ -62,7 +63,7 @@ export function AddPost() {
         </label>
         <div className={classes.media__options}>
           <EventNoteIcon style={{ color: "orange", fontSize: 30 }} />
-          <h4>URL</h4>
+          <h4>Event</h4>
         </div>
         <div className={classes.media__options}>
           <CalendarViewDayIcon style={{ color: "#f5987e" }} />
