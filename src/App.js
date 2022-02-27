@@ -9,6 +9,7 @@ import { Login } from "./components/Login/Login";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Network } from "./components/Network/Network";
 import { Notifications } from "./components/notifications/notifications";
+import { Profile } from "./components/Profile/Profile";
 import {
   selectUser,
   loginUser,
@@ -47,10 +48,11 @@ function App() {
           <Navbar />
           <br />
           <Routes>
-            <Route path="/feed" element={<Home />}></Route>
+            <Route path="/" element={<Home />}></Route>
             <Route path="/jobs" element={<Job />}></Route>
             <Route path="/notifications" element={<Notifications />}></Route>
             <Route path="/network" element={<Network />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
           </Routes>
         </div>
       )}

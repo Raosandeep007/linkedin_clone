@@ -10,7 +10,13 @@ import { db } from "../../../firebase";
 import Styles from "./Style";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../Redux/userSlice";
+import { useNavigate } from "react-router-dom";
+
 export function AddPost() {
+  const nav = useNavigate();
+  const direct = () => {
+    nav("/profile");
+  };
   const user = useSelector(selectUser);
 
   const classes = Styles();
@@ -31,7 +37,7 @@ export function AddPost() {
   return (
     <Paper className={classes.upload}>
       <div className={classes.upload__header}>
-        <Avatar src={user.photoURL} />
+        <Avatar onClick={direct} src={user.photoURL} />
         <form className={classes.header__form} onSubmit={submitPost}>
           <input
             placeholder="Start a Add"

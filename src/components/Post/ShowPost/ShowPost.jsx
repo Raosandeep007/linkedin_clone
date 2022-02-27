@@ -14,7 +14,6 @@ import { db } from "../../../firebase";
 function ShowPost() {
   const classes = Style();
   const [posts, setPosts] = useState([]);
-  const [enterposts, setenterPosts] = useState([]);
   const [likesCount, setLikesCount] = useState(1);
   const [commentsCount, setCommentsCount] = useState(1);
   const [heartIcontOrder, setHeartIcontOrder] = useState(1);
@@ -30,11 +29,6 @@ function ShowPost() {
     db.collection("manullypost").onSnapshot((snapshot) => {
       setPosts(snapshot.docs.map((doc) => doc.data()));
     });
-    db.collection("enterpost")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        setenterPosts(snapshot.docs.map((doc) => doc.data()));
-      });
   }, []);
 
   const Reactions = ({ i }) => {

@@ -19,7 +19,7 @@ export const Navbar = () => {
     <div>
       <div className="container">
         <div className="content">
-          <Link to="/feed">
+          <Link to="/">
             <img
               id="linkedinlogoimg"
               src="https://firebasestorage.googleapis.com/v0/b/linkedin-clone-3e412.appspot.com/o/navbar%2Fhome-logo.svg?alt=media&token=4c8fd56b-27c2-4309-9db8-20419b262ae7"
@@ -41,7 +41,7 @@ export const Navbar = () => {
 
           <div className="list">
             <div>
-              <Link to="/feed">
+              <Link to="/">
                 <a id="one" onClick={changeStyle}>
                   <img src="https://firebasestorage.googleapis.com/v0/b/linkedin-clone-3e412.appspot.com/o/navbar%2Fnav-home.svg?alt=media&token=26214d47-fb1a-47d9-974f-4b72e3a3554c" />
                   <span>Home</span>
@@ -81,7 +81,12 @@ export const Navbar = () => {
               </Link>
             </div>
             <div>
-              <a id="six" onClick={(e) => firebase.auth().signOut()}>
+              <a
+                id="six"
+                onClick={(e) => {
+                  firebase.auth().signOut();
+                }}
+              >
                 <img src={user.photoURL} />
                 <span>
                   Me

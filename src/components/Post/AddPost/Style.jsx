@@ -20,6 +20,7 @@ export default makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     padding: "15px 0 5px 0",
+    cursor: "pointer",
   },
 
   header__form: {

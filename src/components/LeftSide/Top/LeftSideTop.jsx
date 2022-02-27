@@ -4,6 +4,7 @@ import LabelImportantIcon from "@material-ui/icons/LabelImportant";
 import Style from "./Style";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../Redux/userSlice";
+import { useNavigate } from "react-router-dom";
 export const LeftSideTop = () => {
   const user = useSelector(selectUser);
   const classes = Style();
@@ -16,7 +17,10 @@ export const LeftSideTop = () => {
     setViewed(Math.floor(Math.random() * 100));
     setConnections(Math.floor(Math.random() * 1000));
   }, []);
-
+  const nav = useNavigate();
+  const direct = () => {
+    nav("/profile");
+  };
   return (
     <Paper className={classes.sidebar}>
       <div
@@ -28,8 +32,10 @@ export const LeftSideTop = () => {
           backgroundRepeat: "no-repeat",
         }}
       ></div>
-      <Avatar src={user.photoURL} />
-      <h4>{user.displayName}</h4>
+      <Avatar src={user.photoURL} onClick={direct} />
+      <h4 onClick={direct} className={classes.direct}>
+        {user.displayName}
+      </h4>
       <div className={classes.stats}>
         <Divider />
         <div className={classes.stat}>

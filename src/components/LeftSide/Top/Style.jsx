@@ -13,6 +13,7 @@ export default makeStyles((theme) => ({
       height: "auto",
       border: "2px solid white",
       marginTop: -40,
+      cursor: "pointer",
       [theme.breakpoints.down("sm")]: {
         width: "13%",
         marginTop: -20,
@@ -20,6 +21,12 @@ export default makeStyles((theme) => ({
     },
     "& > h4": {
       margin: "10px 0",
+      cursor: "pointer",
+    },
+  },
+  direct: {
+    "&:hover": {
+      textDecoration: "underline",
     },
   },
   cover: {
