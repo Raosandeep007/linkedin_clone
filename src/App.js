@@ -42,9 +42,13 @@ function App() {
   return (
     <>
       {!user ? (
-        <Login />
+        <>
+          <Login />
+          {(document.title = `LinkedIn`)}
+        </>
       ) : (
         <div className="App">
+          {(document.title = `${user.displayName}  | LinkedIn`)}
           <Navbar />
           <br />
           <Routes>
