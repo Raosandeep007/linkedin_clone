@@ -35,6 +35,9 @@ function App() {
         );
       } else {
         //not logged in
+        {
+          document.title = `LinkedIn`;
+        }
         dispatch(logoutUser());
       }
     });
@@ -44,7 +47,6 @@ function App() {
       {!user ? (
         <>
           <Login />
-          {(document.title = `LinkedIn`)}
         </>
       ) : (
         <div className="App">

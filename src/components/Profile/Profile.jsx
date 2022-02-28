@@ -52,7 +52,10 @@ export const Profile = () => {
               </p>
               <div className="follow_button">
                 <button className="button">Open to</button>
-                <button className="button1"> Add profile section</button>
+                <button className="Add_profile_btn ">
+                  {" "}
+                  Add profile section
+                </button>
                 <button className="button2">More</button>
               </div>
             </div>
