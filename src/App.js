@@ -43,7 +43,12 @@ function App() {
     });
   }, []);
   return (
+    
+    
     <>
+    
+    
+    
       {!user ? (
         <>
           <Login />
@@ -54,9 +59,9 @@ function App() {
           <Navbar />
           <br />
           <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/jobs" element={<Job />}></Route>
-            <Route path="/notifications" element={<Notifications />}></Route>
+            <Route   path="/" element={<Home />}></Route>
+            <Route   path="/jobs" element={<Job />}></Route>
+            <Route   path="/notifications" element={<Notifications />}></Route>
             <Route path="/network" element={<Network />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
           </Routes>
